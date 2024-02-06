@@ -25,6 +25,18 @@ public:
 
     RelationDescriptor<dim> relationTo(const HyperSphere<dim>& rhs) const
     {
+        RelationDescriptor<dim> ret;
+        if (contains(rhs))
+        {
+            ret.m_Contains = true;
+            return ret;
+        }
+        else if (rhs.contains(*this))
+        {
+            ret.m_Contained = true;
+            return ret;
+        }
+
         float sum = 0.0f;
         for (size_t i = 0; i < dim; ++i)
         {
@@ -35,16 +47,7 @@ public:
         const float distance = sqrtf(sum);
         const bool intersection = distance <= (m_Radius + rhs.m_Radius);
 
-        RelationDescriptor<dim> ret;
-        if (contains(rhs))
-        {
-            ret.m_Contains = true;
-        }
-        else if (rhs.contains(*this))
-        {
-            ret.m_Contained = true;
-        }
-        else if (intersection)
+        if (intersection)
         {
             ret.m_Intersection = calculateIntersection(rhs);
         }
@@ -55,7 +58,7 @@ public:
     {
         for (size_t i = 0; i < m_Points.size(); ++i)
         {
-            if (rhs.m_Points[i] - rhs.m_Radius < m_Points[i] - m_Radius || rhs.m_Points[i] + m_Radius > m_Points[i] + m_Radius)
+            if (rhs.m_Points[i] - rhs.m_Radius <= m_Points[i] - m_Radius || rhs.m_Points[i] + rhs.m_Radius >= m_Points[i] + m_Radius)
             {
                 return false;
             }
