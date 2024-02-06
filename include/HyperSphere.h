@@ -8,7 +8,9 @@
 #include <string>
 #include <iostream>
 
-constexpr bool printLogs = true;
+//constexpr bool printLogs = true;
+
+namespace craftbot {
 
 template <size_t dim>
 class HyperSphere
@@ -33,11 +35,11 @@ public:
         const float distance = sqrtf(sum);
         const bool intersection = distance <= (m_Radius + rhs.m_Radius);
 
-        if (printLogs)
-        {
-            std::cout << "The spheres are " << std::to_string(distance) << " distance apart. \n";
-            std::cout << std::boolalpha << "Intersection: " << intersection << "\n";
-        }
+        //if (printLogs)
+        //{
+        //    std::cout << "The spheres are " << std::to_string(distance) << " distance apart. \n";
+        //    std::cout << std::boolalpha << "Intersection: " << intersection << "\n";
+        //}
 
         RelationDescriptor<dim> ret;
 
@@ -110,3 +112,5 @@ private:
         return ret;
     }
 };
+
+}  // namespace craftbot

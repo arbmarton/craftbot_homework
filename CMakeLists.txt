@@ -8,8 +8,6 @@ set(HEADER_FILES
 )
 
 set(SOURCE_FILES
-	src/IntersectionDescriptor.cpp
-	src/HyperSphere.cpp
 	src/main.cpp
 )
 
