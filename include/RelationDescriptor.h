@@ -26,7 +26,8 @@ struct RelationDescriptor
         }
         else if (m_Intersection)
         {
-            std::cout << "the spheres intersect\n";
+            std::cout << "the spheres intersect:\n";
+            (*m_Intersection).print();
         }
         else
         {
