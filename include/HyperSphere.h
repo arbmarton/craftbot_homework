@@ -6,6 +6,7 @@
 #include <cinttypes>
 #include <array>
 #include <string>
+#include <cassert>
 
 namespace craftbot {
 
@@ -19,6 +20,7 @@ public:
         , m_Radius(radius)
     {
         static_assert(dim > 0, "HyperSphere dimensions must be > 0");
+        assert(m_Radius > 0.0f);
     }
 
     RelationDescriptor<dim> relationTo(const HyperSphere<dim>& rhs) const
