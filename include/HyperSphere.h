@@ -15,6 +15,10 @@ class HyperSphere
 {
 public:
     HyperSphere() = delete;
+
+    // Slight undesired behaviour here stemming from the use of std::array for vectors:
+    // when passing an initializer list with size < dim the extra elements will be zero initialised
+    // in "real" code this will not happen with the use of a proper vector/matrix library
     HyperSphere(const std::array<float, dim>& coordinates, const float radius)
         : m_Points(coordinates)
         , m_Radius(radius)
